@@ -1,0 +1,32 @@
+{
+  "name": "parkerai-api-gateway",
+  "version": "1.0.0",
+  "description": "api gateway for parkerai project",
+  "main": "apiGateway.js",
+  "scripts": {
+    "test": "nodemon apiGateway.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parkingLotsNotifier/parkerai-api-gateway.git"
+  },
+  "author": "parkerai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/parkingLotsNotifier/parkerai-api-gateway/issues"
+  },
+  "homepage": "https://github.com/parkingLotsNotifier/parkerai-api-gateway#readme",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-http-proxy": "^2.0.0",
+    "express-rate-limit": "^7.4.0",
+    "winston": "^3.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
