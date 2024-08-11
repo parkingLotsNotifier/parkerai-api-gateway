@@ -24,7 +24,11 @@ const env = {
 
             // image-processing-service props
             IMAGE_SERVICE_BASE_ADDRS: process.env.IMAGE_SERVICE_BASE_ADDRS,
-            IMAGE_SERVICE_PORT: process.env.IMAGE_SERVICE_PORT
+            IMAGE_SERVICE_PORT: process.env.IMAGE_SERVICE_PORT,
+
+            // user-managment-service props
+            USER_MANAGMENT_SERVICE_BASE_ADDRS : process.env.USER_MANAGMENT_SERVICE_BASE_ADDRS,
+            USER_MANAGMENT_SERVICE_PORT : process.env.USER_MANAGMENT_SERVICE_PORT
 
             };
 
