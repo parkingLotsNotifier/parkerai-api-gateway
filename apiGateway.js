@@ -9,7 +9,7 @@ const rateLimiter = require("./src/middlewares/rateLimiter");
 const authenticateToken = require("./src/middlewares/authMiddleware");
 const { PORT } = require("./config/env");
 const imageProcessingServiceProxy = require("./src/proxy/imageProcessingServiceProxy");
-const userManagmentServiceProxy = require("./src/proxy/userManagmentServiceProxy");
+const userManagementServiceProxy = require("./src/proxy/userManagmentServiceProxy");
 
 const app = express();
 app.use(cookieParser());
@@ -21,7 +21,7 @@ app.use("/auth", authServiceProxy);
 
 // Use authentication middleware
 app.use("/image-processing", authenticateToken, imageProcessingServiceProxy);
-app.use("/data-managment", authenticateToken, userManagmentServiceProxy);
+app.use("/data-management", authenticateToken, userManagementServiceProxy);
 
 // Use custom error handling middleware
 app.use(errorHandler);
