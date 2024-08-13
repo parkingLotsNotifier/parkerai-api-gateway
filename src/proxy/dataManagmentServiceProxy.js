@@ -6,7 +6,7 @@ const {
 
 const DATA_MANAGEMENT_SERVICE_URL = `${DATA_MANAGEMENT_SERVICE_BASE_ADDRS}:${DATA_MANAGEMENT_SERVICE_PORT}`;
 const dataManagementServiceProxy = proxy(DATA_MANAGEMENT_SERVICE_URL, {
-  proxyReqPathResolver: (req) => `/data-managment${req.url}`,
+  proxyReqPathResolver: (req) => `/data-management${req.url}`,
 });
 
 module.exports = dataManagementServiceProxy;

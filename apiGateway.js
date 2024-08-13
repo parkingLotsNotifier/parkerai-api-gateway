@@ -11,7 +11,8 @@ const { PORT } = require("./config/env");
 const imageProcessingServiceProxy = require("./src/proxy/imageProcessingServiceProxy");
 const dataManagementServiceProxy = require("./src/proxy/dataManagmentServiceProxy");
 const predictionServiceProxy = require("./src/proxy/predictionServiceProxy");
-const ppWorkflowHandler = require("./src/handlers/ppWorkflowHandler");
+const {ppWorkflowHandler} = require("./src/handlers/ppWorkflowHandler");
+const ppsWorkflowHandler = require("./src/handlers/ppsWorkflowHandler");
 
 const app = express();
 app.use(cookieParser());
@@ -28,6 +29,7 @@ app.use("/predictions", authenticateToken, predictionServiceProxy);
 
 //  pp-workflow endpoint
 app.post("/pp-workflow", authenticateToken, ppWorkflowHandler);
+app.post("/pps-workflow",authenticateToken, ppsWorkflowHandler)
 
 // Use custom error handling middleware
 app.use(errorHandler);
