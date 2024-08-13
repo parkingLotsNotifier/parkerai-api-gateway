@@ -33,6 +33,6 @@ app.post("/pp-workflow", authenticateToken, ppWorkflowHandler);
 app.use(errorHandler);
 
 // Start the server
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   logger.info(`API Gateway running on port ${PORT}`);
 });

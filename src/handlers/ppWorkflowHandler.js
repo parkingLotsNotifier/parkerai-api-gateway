@@ -1,23 +1,23 @@
 // src/handlers/ppWorkflowHandler.js
 const axios = require("axios");
 const { IMAGE_PROCESSING_SERVICE_BASE_ADDRS,
-        IMAGE_PROCESSING_SERVICE_PORT,
+  IMAGE_PROCESSING_SERVICE_SERVICE_PORT,
         PREDICTION_SERVICE_BASE_ADDRS,
-        PREDICTION_SERVICE_PORT } = require('../../config/env');
+        PREDICT_SERVICE_SERVICE_PORT_INFERENCE } = require('../../config/env');
 
 const ppWorkflowHandler = async (req, res) => {
   try {
     const requestBody = req.body;
 
     const preprocessingResponse = await axios.post(
-      `${IMAGE_PROCESSING_SERVICE_BASE_ADDRS}:${IMAGE_PROCESSING_SERVICE_PORT}/image-processing/process`,
+      `${IMAGE_PROCESSING_SERVICE_BASE_ADDRS}:${IMAGE_PROCESSING_SERVICE_SERVICE_PORT}/image-processing/process`,
       requestBody
     );
 
     const preprocessingData = preprocessingResponse.data;
 
     const predictionResponse = await axios.post(
-      `${PREDICTION_SERVICE_BASE_ADDRS}:${PREDICTION_SERVICE_PORT}/predictions/mobilenet_v3`,
+      `${PREDICTION_SERVICE_BASE_ADDRS}:${PREDICT_SERVICE_SERVICE_PORT_INFERENCE}/predictions/mobilenet_v3`,
       preprocessingData
     );
 
@@ -46,7 +46,7 @@ const ppWorkflowHandler = async (req, res) => {
 
     return res
       .status(500)
-      .json({ message: "Workflow execution failed", error: error.message });
+      .json({ message: "Workflow execution failed", error: error.message});
   }
 };
 
