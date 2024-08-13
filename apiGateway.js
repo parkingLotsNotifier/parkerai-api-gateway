@@ -9,7 +9,9 @@ const rateLimiter = require("./src/middlewares/rateLimiter");
 const authenticateToken = require("./src/middlewares/authMiddleware");
 const { PORT } = require("./config/env");
 const imageProcessingServiceProxy = require("./src/proxy/imageProcessingServiceProxy");
-const userManagementServiceProxy = require("./src/proxy/userManagmentServiceProxy");
+const dataManagementServiceProxy = require("./src/proxy/dataManagmentServiceProxy");
+const predictionServiceProxy = require("./src/proxy/predictionServiceProxy");
+const ppWorkflowHandler = require("./src/handlers/ppWorkflowHandler");
 
 const app = express();
 app.use(cookieParser());
@@ -21,7 +23,11 @@ app.use("/auth", authServiceProxy);
 
 // Use authentication middleware
 app.use("/image-processing", authenticateToken, imageProcessingServiceProxy);
-app.use("/data-management", authenticateToken, userManagementServiceProxy);
+app.use("/data-management", authenticateToken, dataManagementServiceProxy);
+app.use("/predictions", authenticateToken, predictionServiceProxy);
+
+//  pp-workflow endpoint
+app.post("/pp-workflow", authenticateToken, ppWorkflowHandler);
 
 // Use custom error handling middleware
 app.use(errorHandler);
