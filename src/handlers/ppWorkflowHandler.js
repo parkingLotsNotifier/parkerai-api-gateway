@@ -1,5 +1,9 @@
 // src/handlers/ppWorkflowHandler.js
 const axios = require("axios");
+const { IMAGE_PROCESSING_SERVICE_BASE_ADDRS: IMAGE_SERVICE_BASE_ADDRS
+        IMAGE_SERVICE_PORT,
+        PREDICTION_SERVICE_BASE_ADDRS,
+        PREDICTION_SERVICE_PORT } = require('../../config/env');
 
 const ppWorkflowHandler = async (req, res) => {
   try {
