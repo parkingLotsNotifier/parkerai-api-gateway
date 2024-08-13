@@ -1,7 +1,7 @@
 // src/handlers/ppWorkflowHandler.js
 const axios = require("axios");
-const { IMAGE_PROCESSING_SERVICE_BASE_ADDRS: IMAGE_SERVICE_BASE_ADDRS
-        IMAGE_SERVICE_PORT,
+const { IMAGE_PROCESSING_SERVICE_BASE_ADDRS,
+        IMAGE_PROCESSING_SERVICE_PORT,
         PREDICTION_SERVICE_BASE_ADDRS,
         PREDICTION_SERVICE_PORT } = require('../../config/env');
 
@@ -10,14 +10,14 @@ const ppWorkflowHandler = async (req, res) => {
     const requestBody = req.body;
 
     const preprocessingResponse = await axios.post(
-      "http://localhost:3002/image-processing/process",
+      `${IMAGE_PROCESSING_SERVICE_BASE_ADDRS}:${IMAGE_PROCESSING_SERVICE_PORT}/image-processing/process`,
       requestBody
     );
 
     const preprocessingData = preprocessingResponse.data;
 
     const predictionResponse = await axios.post(
-      "http://localhost:8080/predictions/mobilenet_v3",
+      `${PREDICTION_SERVICE_BASE_ADDRS}:${PREDICTION_SERVICE_PORT}/predictions/mobilenet_v3`,
       preprocessingData
     );
 
