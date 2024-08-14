@@ -1,8 +1,8 @@
 const { executeWorkflow } = require("../utils/workflowExecutor");
 
-const pPWorkflowHandler = async (req, res) => {
+const dCCWorkflowHandler = async (req, res) => {
   try {
-    const combinedResponse = await executeWorkflow(req.body, true, false);
+    const combinedResponse = await executeWorkflow(req.body, true, true);
     return res.status(200).json(combinedResponse);
   } catch (error) {
     return res
@@ -11,4 +11,4 @@ const pPWorkflowHandler = async (req, res) => {
   }
 };
 
-module.exports = pPWorkflowHandler;
+module.exports = dCCWorkflowHandler;
