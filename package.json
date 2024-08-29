@@ -4,7 +4,7 @@
   "description": "api gateway for parkerai project",
   "main": "apiGateway.js",
   "scripts": {
-    "test": "nodemon apiGateway.js"
+    "dev": "nodemon apiGateway.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,14 @@
   "dependencies": {
     "axios": "^1.7.3",
     "body-parser": "^1.20.2",
+    "circular-json": "^0.5.9",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-http-proxy": "^2.0.0",
     "express-rate-limit": "^7.4.0",
+    "json-stream-stringify": "^3.1.4",
     "jsonwebtoken": "^9.0.0",
     "winston": "^3.13.1"
   },
