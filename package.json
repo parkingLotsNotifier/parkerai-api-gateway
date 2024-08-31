@@ -4,7 +4,7 @@
   "description": "api gateway for parkerai project",
   "main": "apiGateway.js",
   "scripts": {
-    "dev": "nodemon apiGateway.js"
+    "dev": "cross-env NODE_OPTIONS=--dns-result-order=ipv4first nodemon apiGateway.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "winston": "^3.13.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.4"
   }
 }
