@@ -11,9 +11,11 @@ const { PORT } = require("./config/env");
 const imageProcessingServiceProxy = require("./src/proxy/imageProcessingServiceProxy");
 const dataManagementServiceProxy = require("./src/proxy/dataManagmentServiceProxy");
 const predictionServiceProxy = require("./src/proxy/predictionServiceProxy");
-const pPWorkflowHandler = require("./src/handlers/pPWorkflowHandler");
-const pPSWorkflowHandler = require("./src/handlers/pPSWorkflowHandler");
-const dCCWorkflowHandler = require("./src/handlers/dCCWorkflowHandler");
+const schedulerServiceProxy = require("./src/proxy/schedulerServiceProxy"); // Import the Scheduler Service Proxy
+const pPWorkflowHandler = require("./src/controllers/pPWorkflowHandler");
+const pPSWorkflowHandler = require("./src/controllers/pPSWorkflowHandler");
+const dCCWorkflowHandler = require("./src/controllers/dCCWorkflowHandler");
+const { startConsumer } = require("./src/consumer/rabbimqConsumer");
 const cors = require("cors");
 
 
@@ -29,12 +31,12 @@ app.use(cors({
 }));
 app.options('*', cors());
 app.use(cookieParser());
+app.use(rateLimiter);
 
 // TODO 
 app.use("/data-management", dataManagementServiceProxy);
 
 app.use(bodyParser.json({ limit: "10mb" }));
-app.use(rateLimiter);
 
 // Use authProxy for authentication routes
 app.use("/auth", authServiceProxy);
@@ -52,10 +54,14 @@ app.post("/pp-workflow", pPWorkflowHandler);
 app.post("/pps-workflow", pPSWorkflowHandler);
 app.post("/dcc-workflow", dCCWorkflowHandler);
 
+app.use("/scheduler", schedulerServiceProxy); // Use schedulerServiceProxy for scheduling routes
+
+
 // Use custom error handling middleware
 app.use(errorHandler);
 
 // Start the server
 app.listen(PORT, "0.0.0.0", () => {
   logger.info(`API Gateway running on port ${PORT}`);
+  startConsumer();  // Start the consumer after the server
 });
